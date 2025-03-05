@@ -16,7 +16,7 @@ public class MultiplePrint {
     private static final int PRINT_TIMES = 10;
 
 
-    private static final Object object = new Object();
+    private final Object object = new Object();
 
     private Semaphore semaphoreA = new Semaphore(1);
     private Semaphore semaphoreB = new Semaphore(0);
@@ -71,7 +71,7 @@ public class MultiplePrint {
         }
     }
 
-    private void printSynchronided(){
+    private void printSynchronized(){
         MultiplePrint multiplePrint = new MultiplePrint();
         Thread threadA = new Thread(() -> multiplePrint.usingSynchronizedPrint(0, "A"), "threadA");
         Thread threadB = new Thread(() -> multiplePrint.usingSynchronizedPrint(1, "B"), "threadB");
@@ -107,7 +107,7 @@ public class MultiplePrint {
     public static void main(String[] args) {
         MultiplePrint print = new MultiplePrint();
 //        print.printLockCondition();
-//        print.printSynchronided();
-        print.printSemaphore();
+        print.printSynchronized();
+//        print.printSemaphore();
     }
 }
