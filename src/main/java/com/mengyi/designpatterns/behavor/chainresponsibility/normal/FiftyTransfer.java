@@ -1,4 +1,4 @@
-package com.mengyi.designpatterns.struct.chainresponsibility.normal;
+package com.mengyi.designpatterns.behavor.chainresponsibility.normal;
 
 public class FiftyTransfer extends MoneyTransfer{
 

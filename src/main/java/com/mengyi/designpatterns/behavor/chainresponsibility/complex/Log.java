@@ -1,4 +1,4 @@
-package com.mengyi.designpatterns.struct.chainresponsibility.complex;
+package com.mengyi.designpatterns.behavor.chainresponsibility.complex;
 
 public abstract class Log {
     protected Log nextLog;

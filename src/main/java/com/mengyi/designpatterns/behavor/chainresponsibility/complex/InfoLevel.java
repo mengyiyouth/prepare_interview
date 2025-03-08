@@ -1,4 +1,4 @@
-package com.mengyi.designpatterns.struct.chainresponsibility.complex;
+package com.mengyi.designpatterns.behavor.chainresponsibility.complex;
 
 public class InfoLevel extends Log{
     public InfoLevel(Log log, int level) {

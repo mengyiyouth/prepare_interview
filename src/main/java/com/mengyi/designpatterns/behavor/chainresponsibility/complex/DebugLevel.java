@@ -1,4 +1,4 @@
-package com.mengyi.designpatterns.struct.chainresponsibility.complex;
+package com.mengyi.designpatterns.behavor.chainresponsibility.complex;
 
 public class DebugLevel extends Log{
     public DebugLevel(Log log, int level) {
