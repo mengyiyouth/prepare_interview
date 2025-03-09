@@ -1,4 +1,4 @@
-package com.mengyi.designpatterns.behavor.combining.complex;
+package com.mengyi.designpatterns.struct.combining.complex;
 
 public class ValidResult {
     private String result;

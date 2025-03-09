@@ -1,4 +1,4 @@
-package com.mengyi.designpatterns.behavor.combining.simple;
+package com.mengyi.designpatterns.struct.combining.simple;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;

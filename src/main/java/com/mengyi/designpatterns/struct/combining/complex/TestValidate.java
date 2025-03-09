@@ -1,6 +1,4 @@
-package com.mengyi.designpatterns.behavor.combining.complex;
-
-import java.util.function.Function;
+package com.mengyi.designpatterns.struct.combining.complex;
 
 public class TestValidate {
     public static void main(String[] args) {

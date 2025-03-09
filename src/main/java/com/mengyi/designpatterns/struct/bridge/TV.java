@@ -1,4 +1,4 @@
-package com.mengyi.designpatterns.behavor.bridge;
+package com.mengyi.designpatterns.struct.bridge;
 
 public class TV implements Appliances{
     @Override

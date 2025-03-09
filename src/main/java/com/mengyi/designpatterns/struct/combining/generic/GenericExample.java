@@ -1,4 +1,4 @@
-package com.mengyi.designpatterns.behavor.combining.generic;
+package com.mengyi.designpatterns.struct.combining.generic;
 
 import java.util.function.Function;
 

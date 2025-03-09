@@ -1,4 +1,4 @@
-package com.mengyi.designpatterns.behavor.bridge;
+package com.mengyi.designpatterns.struct.bridge;
 
 public class TestAppliances {
     public static void main(String[] args) {
