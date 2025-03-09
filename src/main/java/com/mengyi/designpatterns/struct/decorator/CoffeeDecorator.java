@@ -1,4 +1,4 @@
-package com.mengyi.designpatterns.behavor.decorator;
+package com.mengyi.designpatterns.struct.decorator;
 
 public abstract class CoffeeDecorator implements Coffee{
     private Coffee coffee;

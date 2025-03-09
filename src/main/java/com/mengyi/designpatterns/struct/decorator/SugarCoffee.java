@@ -1,4 +1,4 @@
-package com.mengyi.designpatterns.behavor.decorator;
+package com.mengyi.designpatterns.struct.decorator;
 
 public class SugarCoffee extends CoffeeDecorator{
     public SugarCoffee(Coffee coffee) {
