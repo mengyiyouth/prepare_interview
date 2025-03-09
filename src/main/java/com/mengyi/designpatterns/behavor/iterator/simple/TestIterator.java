@@ -1,4 +1,4 @@
-package com.mengyi.designpatterns.behavor.iterator;
+package com.mengyi.designpatterns.behavor.iterator.simple;
 
 import java.util.Arrays;
 import java.util.Iterator;
