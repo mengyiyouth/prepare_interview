@@ -24,8 +24,8 @@ public class MultiplePrint {
 
     private void usingLockConditionPrint(int targetState, Condition currentCondition, Condition nextCondition, String targetStr) {
         for (int i = 0; i < PRINT_TIMES; i++) {
-            lock.lock();
             try {
+                lock.lock();
                 while (state % 3 != targetState) {
                     try {
                         currentCondition.await();
