@@ -1,5 +1,10 @@
 package com.mengyi.multiple;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -21,6 +26,8 @@ public class MultiplePrint {
     private Semaphore semaphoreA = new Semaphore(1);
     private Semaphore semaphoreB = new Semaphore(0);
     private Semaphore semaphoreC = new Semaphore(0);
+
+    private ExecutorService executorService = Executors.newFixedThreadPool(3);
 
     private void usingLockConditionPrint(int targetState, Condition currentCondition, Condition nextCondition, String targetStr) {
         for (int i = 0; i < PRINT_TIMES; i++) {
@@ -104,10 +111,55 @@ public class MultiplePrint {
         threadA.start();
     }
 
+    private CompletableFuture<Void> usingCompletableFuture(Semaphore currentSemaphore, Semaphore nextSemaphore, String targetString){
+        return CompletableFuture.runAsync(() -> {
+            for (int i = 0; i < PRINT_TIMES; i++) {
+                try {
+                    currentSemaphore.acquire();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                System.out.println("current character: " + targetString);
+                nextSemaphore.release();
+            }
+        }, executorService);
+
+    }
+
+    private void printCompletableFuture(){
+        List<CompletableFuture<Void>> futures = new ArrayList<>();
+        CompletableFuture<Void> a = usingCompletableFuture(semaphoreA, semaphoreB, "A");
+        CompletableFuture<Void> b = usingCompletableFuture(semaphoreB, semaphoreC, "B");
+        CompletableFuture<Void> c = usingCompletableFuture(semaphoreC, semaphoreA, "C");
+
+        futures.add(a);
+        futures.add(b);
+        futures.add(c);
+
+        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
+                .whenComplete((result, throwable) -> {
+                    if (throwable != null) {
+                        System.err.println("Error occurred: " + throwable.getMessage());
+                    }
+                    System.out.println("\nAll tasks completed.");
+                    // 关闭线程池
+                    executorService.shutdown();
+                    try {
+                        if (!executorService.awaitTermination(5, java.util.concurrent.TimeUnit.SECONDS)) {
+                            executorService.shutdownNow();
+                        }
+                    } catch (InterruptedException e) {
+                        executorService.shutdownNow();
+                        Thread.currentThread().interrupt();
+                    }
+                }).join();
+    }
+
     public static void main(String[] args) {
         MultiplePrint print = new MultiplePrint();
 //        print.printLockCondition();
-        print.printSynchronized();
+//        print.printSynchronized();
 //        print.printSemaphore();
+        print.printCompletableFuture();
     }
 }
