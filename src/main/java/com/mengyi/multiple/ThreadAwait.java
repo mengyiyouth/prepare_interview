@@ -109,7 +109,7 @@ public class ThreadAwait {
         countDownLatch.await();
     }
 
-    public class Task1 {
+    public class Task1 implements Runnable{
         public void run() {
             System.out.println("this is task1");
         }
