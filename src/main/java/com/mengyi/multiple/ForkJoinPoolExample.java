@@ -14,7 +14,7 @@ public class ForkJoinPoolExample {
         @Override
         protected Integer compute() {
             if(this.value < 0){
-                //模拟一场情况
+                //模拟异常情况
                 throw new RuntimeException("Task failed with value: " + this.value);
             }
             if(this.value <= 1){
