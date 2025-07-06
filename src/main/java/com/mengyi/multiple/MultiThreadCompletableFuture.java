@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 public class MultiThreadCompletableFuture {
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newFixedThreadPool(10);
-        List<Integer> dataList = IntStream.rangeClosed(1, 100).boxed().collect(Collectors.toList());
+        List<Integer> dataList = IntStream.rangeClosed(1, 100000).boxed().collect(Collectors.toList());
 
         List<CompletableFuture<String>> futures = new ArrayList<>();
 
